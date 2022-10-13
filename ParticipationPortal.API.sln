@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParticipationPortal.API", "ParticipationPortal.API\ParticipationPortal.API.csproj", "{9762CFFD-2E95-44AF-A90E-209C5906CA93}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9762CFFD-2E95-44AF-A90E-209C5906CA93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9762CFFD-2E95-44AF-A90E-209C5906CA93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9762CFFD-2E95-44AF-A90E-209C5906CA93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9762CFFD-2E95-44AF-A90E-209C5906CA93}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {008B7D32-185E-4D11-913A-07E05C50AD9F}
+	EndGlobalSection
+EndGlobal

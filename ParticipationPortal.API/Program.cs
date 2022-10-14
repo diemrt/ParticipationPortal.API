@@ -45,6 +45,11 @@ builder.Services
     .AddSingleton<ParticipationPortal.Domain.Services.v1.IUserService, ParticipationPortal.Services.Application.v1.UserService>()
     ;
 
+//repositories
+builder.Services
+    .AddSingleton<ParticipationPortal.Domain.Repositories.v1.IUserRepository, ParticipationPortal.Infrastructure.Repositories.v1.UserRepository>()
+    ;
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

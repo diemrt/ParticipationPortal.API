@@ -10,7 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContextPool<ParticipationPortalContext>(options =>
 {
-    options.UseSqlite(builder.Configuration.GetConnectionString("participation_portal_test"), serverOptions =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("ParticipationPortal"), serverOptions =>
     {
         serverOptions.MigrationsAssembly
         (typeof(Program).Assembly.FullName);

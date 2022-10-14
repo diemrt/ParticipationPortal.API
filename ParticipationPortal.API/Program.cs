@@ -1,8 +1,17 @@
+using Google.Apis.Auth.OAuth2;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using ParticipationPortal.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddUserSecrets<Program>();
 // Add services to the container.
+
+FirebaseAdmin.FirebaseApp.Create(new FirebaseAdmin.AppOptions()
+{
+    Credential = GoogleCredential.FromFile(builder.Configuration.GetSection("Firebase:SDK:Path").Value)
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -17,6 +26,19 @@ builder.Services.AddDbContextPool<ParticipationPortalContext>(options =>
         serverOptions.CommandTimeout(600);
     });
 });
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.Authority = $"https://securetoken.google.com/{builder.Configuration.GetSection("Firebase:AuthSeries").Value}";
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidIssuer = $"https://securetoken.google.com/{builder.Configuration.GetSection("Firebase:AuthSeries").Value}",
+            ValidateAudience = true,
+            ValidAudience = builder.Configuration.GetSection("Firebase:AuthSeries").Value,
+            ValidateLifetime = true
+        };
+    });
 
 var app = builder.Build();
 
@@ -29,6 +51,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

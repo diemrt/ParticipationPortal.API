@@ -1,4 +1,6 @@
-﻿using ParticipationPortal.Domain.Repositories.v1;
+﻿using Microsoft.EntityFrameworkCore;
+using ParticipationPortal.Domain.Entities.v1;
+using ParticipationPortal.Domain.Repositories.v1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,18 @@ namespace ParticipationPortal.Infrastructure.Repositories.v1
         public UserRepository(ParticipationPortalContext context)
         {
             this.context = context;
+        }
+
+        public User Insert(User user)
+        {
+            var result = context.Users.Add(user);
+            return result.Entity;
+        }
+
+        public async Task<bool> AnyAsync(string userId)
+        {
+            var result = await context.Users.Where(x => x.FirebaseUserId.Equals(userId)).AsNoTracking().FirstOrDefaultAsync();
+            return result != null;
         }
 
         #region Save
@@ -41,7 +55,7 @@ namespace ParticipationPortal.Infrastructure.Repositories.v1
         {
             DisposeAsync(true).Wait();
             GC.SuppressFinalize(this);
-        } 
+        }
         #endregion
     }
 }

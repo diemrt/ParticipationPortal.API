@@ -1,4 +1,7 @@
-﻿using ParticipationPortal.Domain.RequestModels.v1;
+﻿using AutoMapper;
+using ParticipationPortal.Domain.Entities.v1;
+using ParticipationPortal.Domain.Repositories.v1;
+using ParticipationPortal.Domain.RequestModels.v1;
 using ParticipationPortal.Domain.Services.v1;
 using System;
 using System.Collections.Generic;
@@ -10,9 +13,25 @@ namespace ParticipationPortal.Services.Application.v1
 {
     public class UserService : IUserService
     {
-        public Task CreateAsync(string userId, AddUserRequestModel model)
+        private readonly IMapper _mapper;
+        private readonly IUserRepository _userRepository;
+
+        public UserService(IMapper mapper, IUserRepository userRepository)
         {
-            throw new NotImplementedException();
+            this._mapper = mapper;
+            this._userRepository = userRepository;
+        }
+
+        public async Task CreateAsync(string userId, AddUserRequestModel model)
+        {
+            if (await _userRepository.AnyAsync(userId))
+                new InvalidOperationException("You are trying to insert an existing user.");
+
+            model.FirebaseUserId = userId;
+            var user = _mapper.Map<User>(model);
+
+            var addedUser = _userRepository.Insert(user);
+            await _userRepository.SaveAsync();
         }
     }
 }

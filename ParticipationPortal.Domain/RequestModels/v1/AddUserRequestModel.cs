@@ -8,5 +8,6 @@ namespace ParticipationPortal.Domain.RequestModels.v1
 {
     public class AddUserRequestModel : AddEditUserRequestModel
     {
+        public string FirebaseUserId { get; set; }
     }
 }

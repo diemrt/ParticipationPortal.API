@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParticipationPortal.API", "ParticipationPortal.API\ParticipationPortal.API.csproj", "{9762CFFD-2E95-44AF-A90E-209C5906CA93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParticipationPortal.API", "ParticipationPortal.API\ParticipationPortal.API.csproj", "{9762CFFD-2E95-44AF-A90E-209C5906CA93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParticipationPortal.Domain", "ParticipationPortal.Domain\ParticipationPortal.Domain.csproj", "{5963EAFF-8889-4AB1-84F8-1D035A199AD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParticipationPortal.Domain", "ParticipationPortal.Domain\ParticipationPortal.Domain.csproj", "{5963EAFF-8889-4AB1-84F8-1D035A199AD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParticipationPortal.Infrastructure", "ParticipationPortal.Infrastructure\ParticipationPortal.Infrastructure.csproj", "{C5DF6A49-CE90-456C-8B7A-59788113A196}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParticipationPortal.Infrastructure", "ParticipationPortal.Infrastructure\ParticipationPortal.Infrastructure.csproj", "{C5DF6A49-CE90-456C-8B7A-59788113A196}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParticipationPortal.Services", "ParticipationPortal.Services\ParticipationPortal.Services.csproj", "{9188A973-043C-4B5B-A661-175478BC8A61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{C5DF6A49-CE90-456C-8B7A-59788113A196}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5DF6A49-CE90-456C-8B7A-59788113A196}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5DF6A49-CE90-456C-8B7A-59788113A196}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9188A973-043C-4B5B-A661-175478BC8A61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9188A973-043C-4B5B-A661-175478BC8A61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9188A973-043C-4B5B-A661-175478BC8A61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9188A973-043C-4B5B-A661-175478BC8A61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

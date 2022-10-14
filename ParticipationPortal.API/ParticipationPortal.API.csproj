@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ParticipationPortal.Infrastructure\ParticipationPortal.Infrastructure.csproj" />
+    <ProjectReference Include="..\ParticipationPortal.Services\ParticipationPortal.Services.csproj" />
   </ItemGroup>
 
 </Project>

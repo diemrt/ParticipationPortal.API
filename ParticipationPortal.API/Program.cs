@@ -40,6 +40,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+//services
+builder.Services
+    .AddSingleton<ParticipationPortal.Domain.Services.v1.IUserService, ParticipationPortal.Services.Application.v1.UserService>()
+    ;
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

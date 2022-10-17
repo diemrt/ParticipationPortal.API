@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ParticipationPortal.Domain.RequestModels.v1;
+using ParticipationPortal.Domain.RequestModels.v1.User;
+using ParticipationPortal.Domain.ResponseModels.v1;
 using ParticipationPortal.Domain.Services.v1;
 
 namespace ParticipationPortal.API.Controllers
@@ -17,12 +18,18 @@ namespace ParticipationPortal.API.Controllers
             this._userService = userService;
         }
 
-        [HttpGet]
+        /// <summary>
+        /// Get information of a logged user
+        /// </summary>
+        [HttpGet()]
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Find))]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var userId = User.FindFirst("user_id").Value;
-            throw new NotImplementedException();
+            var userId = User.FindFirst("user_id")?.Value;
+            if (string.IsNullOrEmpty(userId)) throw new ArgumentNullException("Unable to retrive any user id.");
+
+            GetUserByUserIdResponseModel result = await _userService.GetByUserIdAsync(userId);
+            return Ok(result);
         }
 
         /// <summary>
@@ -33,7 +40,9 @@ namespace ParticipationPortal.API.Controllers
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Create))]
         public async Task<IActionResult> Add(AddUserRequestModel model)
         {
-            var userId = User.FindFirst("user_id").Value;
+            var userId = User.FindFirst("user_id")?.Value;
+            if (string.IsNullOrEmpty(userId)) throw new ArgumentNullException("Unable to retrive any user id.");
+
             await _userService.CreateAsync(userId, model);
 
             return NoContent();

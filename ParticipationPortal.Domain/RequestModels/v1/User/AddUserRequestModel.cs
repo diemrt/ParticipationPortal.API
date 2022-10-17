@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParticipationPortal.Domain.RequestModels.v1
+namespace ParticipationPortal.Domain.RequestModels.v1.User
 {
     public class AddUserRequestModel : AddEditUserRequestModel
     {

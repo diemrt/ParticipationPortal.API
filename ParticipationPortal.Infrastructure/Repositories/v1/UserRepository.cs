@@ -30,6 +30,17 @@ namespace ParticipationPortal.Infrastructure.Repositories.v1
             return result != null;
         }
 
+        public async Task<User> GetByUserIdAsync(string userId)
+        {
+            var result = await context.Users
+                .Include(x => x.Role)
+                .Where(x => x.FirebaseUserId.Equals(userId))
+                .AsNoTracking()
+                .FirstOrDefaultAsync();
+
+            return result;
+        }
+
         #region Save
         public async Task SaveAsync()
         {

@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using ParticipationPortal.Domain.Entities.v1;
 using ParticipationPortal.Domain.Repositories.v1;
-using ParticipationPortal.Domain.RequestModels.v1;
+using ParticipationPortal.Domain.RequestModels.v1.User;
+using ParticipationPortal.Domain.ResponseModels.v1;
 using ParticipationPortal.Domain.Services.v1;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,16 @@ namespace ParticipationPortal.Services.Application.v1
 
             var addedUser = _userRepository.Insert(user);
             await _userRepository.SaveAsync();
+        }
+
+        public async Task<GetUserByUserIdResponseModel> GetByUserIdAsync(string userId)
+        {
+            User user = await _userRepository.GetByUserIdAsync(userId);
+            if (user == null)
+                throw new InvalidOperationException("Unable to find a user with this user id.");
+
+            var result = _mapper.Map<GetUserByUserIdResponseModel>(user);
+            return result;
         }
     }
 }

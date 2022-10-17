@@ -12,5 +12,6 @@ namespace ParticipationPortal.Domain.Repositories.v1
         User Insert(User user);
         Task<bool> AnyAsync(string userId);
         Task SaveAsync();
+        Task<User> GetByUserIdAsync(string userId);
     }
 }

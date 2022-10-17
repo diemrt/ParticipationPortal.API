@@ -13,7 +13,11 @@ namespace ParticipationPortal.Domain.Mappers
     {
         public UserProfile()
         {
-            CreateMap<AddUserRequestModel, User>();
+            CreateMap<AddUserRequestModel, User>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.NewGuid()))
+                .ForMember(dest => dest.RoleId, opt => opt.MapFrom(src => src.Role.Value))
+                .ForMember(dest => dest.Role, opt => opt.Ignore())
+                ;
         }
     }
 }

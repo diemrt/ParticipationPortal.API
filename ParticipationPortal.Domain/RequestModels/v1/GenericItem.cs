@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace ParticipationPortal.Domain.RequestModels.v1
 {
-    public class AddEditUserRequestModel
+    public class GenericItem
     {
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public GenericItem Role { get; set; }
+        public string Label { get; set; }
+        public int Value { get; set; }
     }
 }

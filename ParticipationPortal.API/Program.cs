@@ -45,11 +45,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 //services
 builder.Services
     .AddTransient<ParticipationPortal.Domain.Services.v1.IUserService, ParticipationPortal.Services.Application.v1.UserService>()
+    .AddTransient<ParticipationPortal.Domain.Services.v1.IRoleService, ParticipationPortal.Services.Application.v1.RoleService>()
     ;
 
 //repositories
 builder.Services
     .AddTransient<ParticipationPortal.Domain.Repositories.v1.IUserRepository, ParticipationPortal.Infrastructure.Repositories.v1.UserRepository>()
+    .AddTransient<ParticipationPortal.Domain.Repositories.v1.IRoleRepository, ParticipationPortal.Infrastructure.Repositories.v1.RoleRepository>()
     ;
 
 var app = builder.Build();

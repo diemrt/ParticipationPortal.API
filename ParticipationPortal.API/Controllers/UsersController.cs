@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ParticipationPortal.Domain.RequestModels.v1.User;
-using ParticipationPortal.Domain.ResponseModels.v1;
+using ParticipationPortal.Domain.ResponseModels.v1.User;
 using ParticipationPortal.Domain.Services.v1;
 
 namespace ParticipationPortal.API.Controllers

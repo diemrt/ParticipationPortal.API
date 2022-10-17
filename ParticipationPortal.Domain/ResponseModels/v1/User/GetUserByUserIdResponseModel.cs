@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParticipationPortal.Domain.ResponseModels.v1
+namespace ParticipationPortal.Domain.ResponseModels.v1.User
 {
     public class GetUserByUserIdResponseModel
     {

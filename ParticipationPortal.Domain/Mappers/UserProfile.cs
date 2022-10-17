@@ -2,7 +2,7 @@
 using ParticipationPortal.Domain.Common;
 using ParticipationPortal.Domain.Entities.v1;
 using ParticipationPortal.Domain.RequestModels.v1.User;
-using ParticipationPortal.Domain.ResponseModels.v1;
+using ParticipationPortal.Domain.ResponseModels.v1.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;

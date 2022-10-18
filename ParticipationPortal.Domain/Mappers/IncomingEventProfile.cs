@@ -18,7 +18,6 @@ namespace ParticipationPortal.Domain.Mappers
                         .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.NewGuid()))
                         .ForMember(dest => dest.WeeklyEvent, opt => opt.Ignore())
                         .ForMember(dest => dest.IncomingEventUsers, opt => opt.Ignore())
-                        .ForMember(dest => dest.IncomingEventRoles, opt => opt.Ignore())
                         .ForMember(dest => dest.WeeklyEventId, opt => opt.MapFrom(src => src.Id))
                         ; 
             #endregion

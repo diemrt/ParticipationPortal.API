@@ -22,7 +22,6 @@ namespace ParticipationPortal.Infrastructure.Repositories.v1
         {
             var result = await context.IncomingEvents
                 .Include(x => x.IncomingEventUsers).ThenInclude(x => x.User)
-                .Include(x => x.IncomingEventRoles).ThenInclude(x => x.Role)
                 .Include(x => x.WeeklyEvent)
                 .AsNoTracking()
                 .ToListAsync();
@@ -40,7 +39,6 @@ namespace ParticipationPortal.Infrastructure.Repositories.v1
         {
             var result = await context.IncomingEvents
                 .Include(x => x.IncomingEventUsers).ThenInclude(x => x.User)
-                .Include(x => x.IncomingEventRoles).ThenInclude(x => x.Role)
                 .Include(x => x.WeeklyEvent)
                 .Where(x => x.ActualDate == date)
                 .AsNoTracking()

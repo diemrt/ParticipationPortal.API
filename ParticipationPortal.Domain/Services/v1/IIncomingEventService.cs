@@ -10,6 +10,6 @@ namespace ParticipationPortal.Domain.Services.v1
     {
         Task CreateNextAsync();
         Task IncomingEventsOfTheMonth(DayOfWeek dayOfWeek);
-        Task CreateIfNewAsync(DateTime dateTime)
+        Task CreateIfNewAsync(DateTime dateTime);
     }
 }

@@ -10,6 +10,6 @@ namespace ParticipationPortal.Domain.Repositories.v1
     public interface IWeeklyEventRepository : IDisposable
     {
         Task SaveAsync();
-        Task<IEnumerable<WeeklyEvent>> GetAllAsync();
+        Task<IEnumerable<WeeklyEvent>> GetAllActiveAsync();
     }
 }

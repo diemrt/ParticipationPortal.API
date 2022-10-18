@@ -36,15 +36,15 @@ namespace ParticipationPortal.Infrastructure.Repositories.v1
             return result.Entity;
         }
 
-        public async Task<IncomingEvent> FindAsync(Guid id)
+        public async Task<bool> AnyAsync(DateTime date)
         {
             var result = await context.IncomingEvents
                 .Include(x => x.IncomingEventUsers).ThenInclude(x => x.User)
                 .Include(x => x.IncomingEventRoles).ThenInclude(x => x.Role)
                 .Include(x => x.WeeklyEvent)
-                .Where(x => x.Id == id)
+                .Where(x => x.ActualDate == date)
                 .AsNoTracking()
-                .FirstOrDefaultAsync();
+                .AnyAsync();
 
             return result;
         }

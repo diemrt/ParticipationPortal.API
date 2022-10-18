@@ -15,18 +15,26 @@ namespace ParticipationPortal.Services.Application.v1
     public class IncomingEventService : IIncomingEventService
     {
         private readonly IMapper _mapper;
+        private readonly IWeeklyEventRepository _weeklyEventRepository;
+        private readonly IIncomingEventRepository _incomingEventRepository;
 
-        public IncomingEventService(IMapper mapper)
+        public IncomingEventService(IMapper mapper, IWeeklyEventRepository weeklyEventRepository, IIncomingEventRepository incomingEventRepository)
         {
             this._mapper = mapper;
+            this._weeklyEventRepository = weeklyEventRepository;
+            this._incomingEventRepository = incomingEventRepository;
         }
 
-        public Task CreateNextAsync()
+        public async Task CreateNextAsync()
         {
-            throw new NotImplementedException();
+            var weeklyEvents = await _weeklyEventRepository.GetAllActiveAsync();
+            foreach (var eventOfTheWeek in weeklyEvents)
+            {
+                await AddIncomingEventsOfTheMonth(eventOfTheWeek);
+            }
         }
 
-        public async Task IncomingEventsOfTheMonth(DayOfWeek dayOfWeek)
+        public async Task AddIncomingEventsOfTheMonth(WeeklyEvent eventOfTheWeek)
         {
             var startingDate = DateTime.Today;
             var lastDayOfTheMonth = DateTime.DaysInMonth(startingDate.Year, startingDate.Month);
@@ -34,14 +42,21 @@ namespace ParticipationPortal.Services.Application.v1
 
             while (startingDate < endingDate)
             {
-                await CreateIfNewAsync(DateTimeUtils.GetNextDateOfTheWeek(startingDate, dayOfWeek));
+                await CreateIfNoDateConflictAsync(DateTimeUtils.GetNextDateOfTheWeek(startingDate, (DayOfWeek)eventOfTheWeek.DayOfWeek), eventOfTheWeek);
                 startingDate = startingDate.AddDays(7);
             }
         }
 
-        public async Task CreateIfNewAsync(DateTime dateTime)
+        public async Task CreateIfNoDateConflictAsync(DateTime dateTime, WeeklyEvent eventInfo)
         {
-            throw new NotImplementedException();
+            var incomingEvent = _mapper.Map<IncomingEvent>(eventInfo);
+            incomingEvent.ActualDate = dateTime;
+
+            if(!await _incomingEventRepository.AnyAsync(dateTime))
+            {
+                _incomingEventRepository.Insert(incomingEvent);
+                await _incomingEventRepository.SaveAsync();
+            }
         }
     }
 }

@@ -18,9 +18,10 @@ namespace ParticipationPortal.Infrastructure.Repositories.v1
             this.context = context;
         }
 
-        public async Task<IEnumerable<WeeklyEvent>> GetAllAsync()
+        public async Task<IEnumerable<WeeklyEvent>> GetAllActiveAsync()
         {
             var result = await context.WeeklyEvents
+                .Where(x => x.IsActive)
                 .AsNoTracking()
                 .ToListAsync();
 

@@ -12,6 +12,6 @@ namespace ParticipationPortal.Domain.Repositories.v1
         Task SaveAsync();
         Task<IEnumerable<IncomingEvent>> GetAllAsync();
         IncomingEvent Insert(IncomingEvent entity);
-        Task<IncomingEvent> FindAsync(Guid id);
+        Task<bool> AnyAsync(DateTime date);
     }
 }

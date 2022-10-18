@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParticipationPortal.Domain.Entities.v1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace ParticipationPortal.Domain.Services.v1
     public interface IIncomingEventService
     {
         Task CreateNextAsync();
-        Task IncomingEventsOfTheMonth(DayOfWeek dayOfWeek);
-        Task CreateIfNewAsync(DateTime dateTime);
+        Task AddIncomingEventsOfTheMonth(WeeklyEvent eventOfTheWeek);
+        Task CreateIfNoDateConflictAsync(DateTime dateTime, WeeklyEvent eventInfo);
     }
 }

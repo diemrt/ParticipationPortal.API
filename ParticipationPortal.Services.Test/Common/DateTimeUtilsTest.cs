@@ -1,6 +1,6 @@
 using ParticipationPortal.Services.Common;
 
-namespace ParticipationPortal.Services.Test
+namespace ParticipationPortal.Services.Test.Common
 {
     public class DateTimeUtilsTest
     {

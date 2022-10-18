@@ -14,7 +14,8 @@ namespace ParticipationPortal.Domain.Entities.v1
 
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public DateTime StartingDate { get; set; }
+        public int DayOfWeek { get; set; }
+        public bool IsActive { get; set; }
 
         public ICollection<IncomingEvent> IncomingEvents { get; set; }
     }

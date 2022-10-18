@@ -22,9 +22,14 @@ namespace ParticipationPortal.Infrastructure.SchemaDefinitions
                 .HasMaxLength(32)
                 .IsRequired();
 
-            builder.Property(u => u.StartingDate)
-                .HasColumnName("starting_date")
-                .HasColumnType("datetime")
+            builder.Property(u => u.DayOfWeek)
+                .HasColumnName("day_of_week")
+                .HasColumnType("int")
+                .IsRequired();
+
+            builder.Property(u => u.IsActive)
+                .HasColumnName("is_active")
+                .HasColumnType("bit")
                 .IsRequired();
         }
     }

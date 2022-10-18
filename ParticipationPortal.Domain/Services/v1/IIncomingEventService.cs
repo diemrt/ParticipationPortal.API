@@ -9,5 +9,7 @@ namespace ParticipationPortal.Domain.Services.v1
     public interface IIncomingEventService
     {
         Task CreateNextAsync();
+        Task IncomingEventsOfTheMonth(DayOfWeek dayOfWeek);
+        Task CreateIfNewAsync(DateTime dateTime)
     }
 }

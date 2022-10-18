@@ -39,7 +39,7 @@ namespace ParticipationPortal.Services.Application.v1
             }
         }
 
-        private async Task CreateIfNewAsync(DateTime dateTime)
+        public async Task CreateIfNewAsync(DateTime dateTime)
         {
             throw new NotImplementedException();
         }

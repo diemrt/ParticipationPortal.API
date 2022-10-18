@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ParticipationPortal.Infrastructure;
 
@@ -11,9 +12,10 @@ using ParticipationPortal.Infrastructure;
 namespace ParticipationPortal.API.Migrations
 {
     [DbContext(typeof(ParticipationPortalContext))]
-    partial class ParticipationPortalContextModelSnapshot : ModelSnapshot
+    [Migration("20221018150219_UpdateWeeklyEventEntity")]
+    partial class UpdateWeeklyEventEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

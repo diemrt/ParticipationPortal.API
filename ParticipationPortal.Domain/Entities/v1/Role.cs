@@ -17,6 +17,6 @@ namespace ParticipationPortal.Domain.Entities.v1
         public string IconName { get; set; }
 
         public ICollection<User> Users { get; set; }
-        public ICollection<IncomingEventRole> IncomingEventRoles { get; set; }
+        public ICollection<WeeklyEventRole> IncomingEventRoles { get; set; }
     }
 }

@@ -18,5 +18,6 @@ namespace ParticipationPortal.Domain.Entities.v1
         public bool IsActive { get; set; }
 
         public ICollection<IncomingEvent> IncomingEvents { get; set; }
+        public ICollection<WeeklyEventRole> WeeklyEventRoles { get; set; }
     }
 }

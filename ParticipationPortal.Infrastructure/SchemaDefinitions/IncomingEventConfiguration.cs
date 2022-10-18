@@ -26,6 +26,10 @@ namespace ParticipationPortal.Infrastructure.SchemaDefinitions
                 .HasColumnType("uniqueidentifier")
                 .IsRequired();
 
+            builder.Property(u => u.IsCovered)
+                .HasColumnName("is_covered")
+                .HasColumnType("bit");
+
             builder.HasOne(u => u.WeeklyEvent)
                 .WithMany(c => c.IncomingEvents)
                 .HasForeignKey(u => u.WeeklyEventId)

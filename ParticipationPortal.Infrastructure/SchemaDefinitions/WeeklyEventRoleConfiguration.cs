@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace ParticipationPortal.Infrastructure.SchemaDefinitions
 {
-    public class IncomingEventRoleConfiguration : IEntityTypeConfiguration<IncomingEventRole>
+    public class WeeklyEventRoleConfiguration : IEntityTypeConfiguration<WeeklyEventRole>
     {
-        public void Configure(EntityTypeBuilder<IncomingEventRole> builder)
+        public void Configure(EntityTypeBuilder<WeeklyEventRole> builder)
         {
-            builder.ToTable(IncomingEventRole.TableName, ParticipationPortalContext.DEFAULT_SCHEMA);
+            builder.ToTable(WeeklyEventRole.TableName, ParticipationPortalContext.DEFAULT_SCHEMA);
             builder.HasKey(u => u.Id);
 
-            builder.Property(u => u.IncomingEventId)
-                .HasColumnName("incoming_event_id")
+            builder.Property(u => u.WeeklyEventId)
+                .HasColumnName("weekly_event_id")
                 .HasColumnType("uniqueidentifier")
                 .IsRequired();
 
@@ -26,18 +26,14 @@ namespace ParticipationPortal.Infrastructure.SchemaDefinitions
                 .HasColumnType("int")
                 .IsRequired();
 
-            builder.Property(u => u.IsCovered)
-                .HasColumnName("is_covered")
-                .HasColumnType("bit");
-
             builder.HasOne(u => u.Role)
                 .WithMany(c => c.IncomingEventRoles)
                 .HasForeignKey(u => u.RoleId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(u => u.IncomingEvent)
-                .WithMany(c => c.IncomingEventRoles)
-                .HasForeignKey(u => u.IncomingEventId)
+            builder.HasOne(u => u.WeeklyEvent)
+                .WithMany(c => c.WeeklyEventRoles)
+                .HasForeignKey(u => u.WeeklyEventId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

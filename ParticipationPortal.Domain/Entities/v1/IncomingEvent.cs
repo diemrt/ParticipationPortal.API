@@ -15,9 +15,9 @@ namespace ParticipationPortal.Domain.Entities.v1
         public Guid Id { get; set; }
         public Guid WeeklyEventId { get; set; }
         public DateTime ActualDate { get; set; }
+        public bool IsCovered { get; set; }
 
         public WeeklyEvent WeeklyEvent { get; set; }
-        public ICollection<IncomingEventRole> IncomingEventRoles { get; set; }
         public ICollection<IncomingEventUser> IncomingEventUsers { get; set; }
     }
 }

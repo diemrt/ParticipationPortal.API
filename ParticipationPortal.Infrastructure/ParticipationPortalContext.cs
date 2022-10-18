@@ -25,7 +25,7 @@ namespace ParticipationPortal.Infrastructure
         }
 
         public DbSet<IncomingEvent> IncomingEvents { get; set; }
-        public DbSet<IncomingEventRole> IncomingEventRoles { get; set; }
+        public DbSet<WeeklyEventRole> IncomingEventRoles { get; set; }
         public DbSet<IncomingEventUser> IncomingEventUsers { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }

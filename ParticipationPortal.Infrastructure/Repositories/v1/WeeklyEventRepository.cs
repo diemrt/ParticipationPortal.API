@@ -21,6 +21,7 @@ namespace ParticipationPortal.Infrastructure.Repositories.v1
         public async Task<IEnumerable<WeeklyEvent>> GetAllActiveAsync()
         {
             var result = await context.WeeklyEvents
+                .Include(x => x.WeeklyEventRoles)
                 .Where(x => x.IsActive)
                 .AsNoTracking()
                 .ToListAsync();

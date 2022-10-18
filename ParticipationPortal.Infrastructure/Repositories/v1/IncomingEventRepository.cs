@@ -9,37 +9,46 @@ using System.Threading.Tasks;
 
 namespace ParticipationPortal.Infrastructure.Repositories.v1
 {
-    public class UserRepository : IUserRepository
+    public class IncomingEventRepository : IIncomingEventRepository
     {
         private ParticipationPortalContext context;
 
-        public UserRepository(ParticipationPortalContext context)
+        public IncomingEventRepository(ParticipationPortalContext context)
         {
             this.context = context;
         }
 
-        public User Insert(User entity)
+        public async Task<IEnumerable<IncomingEvent>> GetAllAsync()
         {
-            var result = context.Users.Add(entity);
+            var result = await context.IncomingEvents
+                .Include(x => x.IncomingEventUsers).ThenInclude(x => x.User)
+                .Include(x => x.IncomingEventRoles).ThenInclude(x => x.Role)
+                .Include(x => x.WeeklyEvent)
+                .AsNoTracking()
+                .ToListAsync();
+
+            return result;
+        }
+
+        public IncomingEvent Insert(IncomingEvent entity)
+        {
+            var result = context.IncomingEvents.Add(entity);
             return result.Entity;
         }
 
-        public async Task<bool> AnyAsync(string userId)
+        public async Task<IncomingEvent> FindAsync(Guid id)
         {
-            var result = await context.Users.Where(x => x.FirebaseUserId.Equals(userId)).AsNoTracking().FirstOrDefaultAsync();
-            return result != null;
-        }
-
-        public async Task<User> GetByUserIdAsync(string userId)
-        {
-            var result = await context.Users
-                .Include(x => x.Role)
-                .Where(x => x.FirebaseUserId.Equals(userId))
+            var result = await context.IncomingEvents
+                .Include(x => x.IncomingEventUsers).ThenInclude(x => x.User)
+                .Include(x => x.IncomingEventRoles).ThenInclude(x => x.Role)
+                .Include(x => x.WeeklyEvent)
+                .Where(x => x.Id == id)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
 
             return result;
         }
+
 
         #region Save
         public async Task SaveAsync()

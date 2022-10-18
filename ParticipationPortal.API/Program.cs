@@ -53,6 +53,8 @@ builder.Services
 builder.Services
     .AddTransient<ParticipationPortal.Domain.Repositories.v1.IUserRepository, ParticipationPortal.Infrastructure.Repositories.v1.UserRepository>()
     .AddTransient<ParticipationPortal.Domain.Repositories.v1.IRoleRepository, ParticipationPortal.Infrastructure.Repositories.v1.RoleRepository>()
+    .AddTransient<ParticipationPortal.Domain.Repositories.v1.IIncomingEventRepository, ParticipationPortal.Infrastructure.Repositories.v1.IncomingEventRepository>()
+    .AddTransient<ParticipationPortal.Domain.Repositories.v1.IWeeklyEventRepository, ParticipationPortal.Infrastructure.Repositories.v1.WeeklyEventRepository>()
     ;
 
 var app = builder.Build();

@@ -9,37 +9,24 @@ using System.Threading.Tasks;
 
 namespace ParticipationPortal.Infrastructure.Repositories.v1
 {
-    public class UserRepository : IUserRepository
+    public class WeeklyEventRepository : IWeeklyEventRepository
     {
         private ParticipationPortalContext context;
 
-        public UserRepository(ParticipationPortalContext context)
+        public WeeklyEventRepository(ParticipationPortalContext context)
         {
             this.context = context;
         }
 
-        public User Insert(User entity)
+        public async Task<IEnumerable<WeeklyEvent>> GetAllAsync()
         {
-            var result = context.Users.Add(entity);
-            return result.Entity;
-        }
-
-        public async Task<bool> AnyAsync(string userId)
-        {
-            var result = await context.Users.Where(x => x.FirebaseUserId.Equals(userId)).AsNoTracking().FirstOrDefaultAsync();
-            return result != null;
-        }
-
-        public async Task<User> GetByUserIdAsync(string userId)
-        {
-            var result = await context.Users
-                .Include(x => x.Role)
-                .Where(x => x.FirebaseUserId.Equals(userId))
+            var result = await context.WeeklyEvents
                 .AsNoTracking()
-                .FirstOrDefaultAsync();
+                .ToListAsync();
 
             return result;
         }
+
 
         #region Save
         public async Task SaveAsync()

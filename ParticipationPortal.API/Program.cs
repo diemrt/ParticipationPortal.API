@@ -46,6 +46,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services
     .AddTransient<ParticipationPortal.Domain.Services.v1.IUserService, ParticipationPortal.Services.Application.v1.UserService>()
     .AddTransient<ParticipationPortal.Domain.Services.v1.IRoleService, ParticipationPortal.Services.Application.v1.RoleService>()
+    .AddTransient<ParticipationPortal.Domain.Services.v1.IIncomingEventService, ParticipationPortal.Services.Application.v1.IncomingEventService>()
     ;
 
 //repositories

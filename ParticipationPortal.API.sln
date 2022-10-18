@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParticipationPortal.Domain"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParticipationPortal.Infrastructure", "ParticipationPortal.Infrastructure\ParticipationPortal.Infrastructure.csproj", "{C5DF6A49-CE90-456C-8B7A-59788113A196}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParticipationPortal.Services", "ParticipationPortal.Services\ParticipationPortal.Services.csproj", "{9188A973-043C-4B5B-A661-175478BC8A61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParticipationPortal.Services", "ParticipationPortal.Services\ParticipationPortal.Services.csproj", "{9188A973-043C-4B5B-A661-175478BC8A61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParticipationPortal.Services.Test", "ParticipationPortal.Services.Test\ParticipationPortal.Services.Test.csproj", "{1ABA2D50-9916-4048-98A9-89121390741C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{9188A973-043C-4B5B-A661-175478BC8A61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9188A973-043C-4B5B-A661-175478BC8A61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9188A973-043C-4B5B-A661-175478BC8A61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ABA2D50-9916-4048-98A9-89121390741C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ABA2D50-9916-4048-98A9-89121390741C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ABA2D50-9916-4048-98A9-89121390741C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ABA2D50-9916-4048-98A9-89121390741C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

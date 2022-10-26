@@ -27,7 +27,7 @@ namespace ParticipationPortal.Services.Application.v1
             var result = new GetAllRolesResponseModel();
 
             IEnumerable<Role> roles = await _roleRepository.GetAllAsync();
-            result.Roles = _mapper.Map<IEnumerable<GenericItem>>(roles);
+            result.Data = _mapper.Map<IEnumerable<GenericItem>>(roles);
             return result;
         }
     }

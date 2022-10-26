@@ -37,11 +37,12 @@ namespace ParticipationPortal.Services.Application.v1
 
         public async Task<GetUserByUserIdResponseModel> GetByUserIdAsync(string userId)
         {
+            var result = new GetUserByUserIdResponseModel();
             User user = await _userRepository.GetByUserIdAsync(userId);
             if (user == null)
                 throw new InvalidOperationException("Unable to find a user with this user id.");
 
-            var result = _mapper.Map<GetUserByUserIdResponseModel>(user);
+            result.Data = _mapper.Map<UserByUserIdResponseModel>(user);
             return result;
         }
     }

@@ -24,7 +24,7 @@ namespace ParticipationPortal.Domain.Mappers
             #endregion
 
             #region GetByUserIdAsync 
-            CreateMap<User, GetUserByUserIdResponseModel>()
+            CreateMap<User, UserByUserIdResponseModel>()
                         .ForMember(dest => dest.Role, opt => opt.MapFrom(src => new GenericItem()
                         {
                             Label = src.Role.Name,

@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace ParticipationPortal.Domain.ResponseModels.v1.Role
 {
-    public class GetAllRolesResponseModel
+    public class GetAllRolesResponseModel : GenericListResponseModel<GenericItem>
     {
-        public IEnumerable<GenericItem> Roles { get; set; }
     }
 }

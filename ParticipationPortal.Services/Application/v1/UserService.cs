@@ -41,7 +41,7 @@ namespace ParticipationPortal.Services.Application.v1
             var result = new GetUserByUserIdResponseModel();
             User user = await _userRepository.GetByUserIdAsync(userId);
             if (user == null)
-                throw new InvalidOperationException("Unable to find a user with this user id.");
+                throw new UserNotFoundException();
 
             result.Data = _mapper.Map<UserByUserIdResponseModel>(user);
             return result;

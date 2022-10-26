@@ -15,6 +15,7 @@ namespace ParticipationPortal.Domain.ResponseModels.v1.IncomingEvent
         public Guid Id { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }
+        public bool IsFull { get; set; }
         public IEnumerable<NeededRoleResponseModel> NeededRoles { get; set; }
         public IEnumerable<InvolvedUserResponseModel> InvolvedUsers { get; set; }
     }

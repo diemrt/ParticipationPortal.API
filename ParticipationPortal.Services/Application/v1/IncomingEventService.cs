@@ -116,6 +116,7 @@ namespace ParticipationPortal.Services.Application.v1
                 addedNeededRole.Add(AddedNeededRole(incomingEvnt, neededRole));
             }
 
+            result.IsFull = !addedNeededRole.Any(x => x.IsCovered == false);
             result.NeededRoles = addedNeededRole;
             result.InvolvedUsers = addedInvolvedUser;
             return result;

@@ -1,4 +1,5 @@
 ﻿using ParticipationPortal.Domain.Entities.v1;
+using ParticipationPortal.Domain.ResponseModels.v1.IncomingEvent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace ParticipationPortal.Domain.Services.v1
         Task CreateNextAsync();
         Task AddIncomingEventsOfTheMonth(WeeklyEvent eventOfTheWeek);
         Task CreateIfNoDateConflictAsync(DateTime dateTime, WeeklyEvent eventInfo);
+        Task<GetAllIncomingEventsResponseModel> GetAllAsync();
     }
 }

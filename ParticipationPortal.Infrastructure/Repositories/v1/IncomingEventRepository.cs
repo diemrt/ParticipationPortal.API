@@ -18,11 +18,12 @@ namespace ParticipationPortal.Infrastructure.Repositories.v1
             this.context = context;
         }
 
-        public async Task<IEnumerable<IncomingEvent>> GetAllAsync()
+        public async Task<IEnumerable<IncomingEvent>> GetAllAsync(DateTime startingDate, DateTime endingDate)
         {
             var result = await context.IncomingEvents
                 .Include(x => x.IncomingEventUsers).ThenInclude(x => x.User)
-                .Include(x => x.WeeklyEvent).ThenInclude(x => x.WeeklyEventRoles)
+                .Include(x => x.WeeklyEvent).ThenInclude(x => x.WeeklyEventRoles).ThenInclude(x => x.Role)
+                .Where(x => x.ActualDate >= startingDate && x.ActualDate <= endingDate)
                 .AsNoTracking()
                 .ToListAsync();
 

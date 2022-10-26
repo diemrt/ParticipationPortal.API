@@ -10,7 +10,7 @@ namespace ParticipationPortal.Domain.Repositories.v1
     public interface IIncomingEventRepository : IDisposable
     {
         Task SaveAsync();
-        Task<IEnumerable<IncomingEvent>> GetAllAsync();
+        Task<IEnumerable<IncomingEvent>> GetAllAsync(DateTime startingDate, DateTime endingDate);
         IncomingEvent Insert(IncomingEvent entity);
         Task<bool> AnyAsync(DateTime date);
     }

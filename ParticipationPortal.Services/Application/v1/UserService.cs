@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ParticipationPortal.Domain.Entities.v1;
+using ParticipationPortal.Domain.Errors.v1.Users;
 using ParticipationPortal.Domain.Repositories.v1;
 using ParticipationPortal.Domain.RequestModels.v1.User;
 using ParticipationPortal.Domain.ResponseModels.v1.User;
@@ -26,7 +27,7 @@ namespace ParticipationPortal.Services.Application.v1
         public async Task CreateAsync(string userId, AddUserRequestModel model)
         {
             if (await _userRepository.AnyAsync(userId))
-                new InvalidOperationException("You are trying to insert an existing user.");
+                throw new AlreadyPresentUserException();
 
             model.FirebaseUserId = userId;
             var user = _mapper.Map<User>(model);

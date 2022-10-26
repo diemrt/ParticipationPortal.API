@@ -1,4 +1,5 @@
 ﻿using ParticipationPortal.Domain.Errors.v1;
+using ParticipationPortal.Domain.Errors.v1.Users;
 using System.Net;
 
 namespace ParticipationPortal.API.Middlewares
@@ -26,9 +27,9 @@ namespace ParticipationPortal.API.Middlewares
             context.Response.ContentType = "application/json";
             var error = exception switch
             {
-                _ => new ApiError() { Message = "Internal Server Error", StatusCode = 500 }
+                AlreadyPresentUserException e => new ApiError() { Message = e.Message, StatusCode = e.StatusCode, InnerMessage = e?.InnerException?.Message},
+                _ => new ApiError() { Message = "Internal Server Error", StatusCode = 500, InnerMessage = exception.Message }
             };
-
 
             context.Response.StatusCode = error.StatusCode;
             await context.Response.WriteAsync(error.ToString());

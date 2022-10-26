@@ -27,7 +27,7 @@ namespace ParticipationPortal.API.Middlewares
             context.Response.ContentType = "application/json";
             var error = exception switch
             {
-                AlreadyPresentUserException e => new ApiError() { Message = e.Message, StatusCode = e.StatusCode, InnerMessage = e?.InnerException?.Message},
+                ApiException e => new ApiError() { Message = e.Message, StatusCode = e.StatusCode, InnerMessage = e?.InnerException?.Message},
                 _ => new ApiError() { Message = "Internal Server Error", StatusCode = 500, InnerMessage = exception.Message }
             };
 

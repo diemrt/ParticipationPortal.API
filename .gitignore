@@ -348,3 +348,4 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/ParticipationPortal.API/participation-portal-firebase-adminsdk-cb95c-b159c26962.json

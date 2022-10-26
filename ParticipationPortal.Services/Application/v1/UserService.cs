@@ -27,7 +27,7 @@ namespace ParticipationPortal.Services.Application.v1
         public async Task CreateAsync(string userId, AddUserRequestModel model)
         {
             if (await _userRepository.AnyAsync(userId))
-                throw new AlreadyPresentUserException();
+                throw new UserAlreadyPresentException();
 
             model.FirebaseUserId = userId;
             var user = _mapper.Map<User>(model);

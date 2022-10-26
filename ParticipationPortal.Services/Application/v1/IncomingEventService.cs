@@ -109,6 +109,8 @@ namespace ParticipationPortal.Services.Application.v1
             var addedNeededRole = new List<NeededRoleResponseModel>();
             var addedInvolvedUser = new List<InvolvedUserResponseModel>();
 
+            result = _mapper.Map<AllIncomingEventsResponseModel>(incomingEvnt);
+
             foreach (var neededRole in incomingEvnt.WeeklyEvent.WeeklyEventRoles)
             {
                 addedNeededRole.Add(AddedNeededRole(incomingEvnt, neededRole));

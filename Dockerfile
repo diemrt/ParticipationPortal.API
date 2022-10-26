@@ -7,13 +7,13 @@ ENV ASPNETCORE_URLS=http://*:80
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["ParticipationPortal.API/ParticipationPortal.API.csproj", "ParticipationPortal.API/"]
-RUN dotnet restore "Avocado.API/Avocado.API.csproj"
+RUN dotnet restore "ParticipationPortal.API/ParticipationPortal.API.csproj"
 COPY . .
-WORKDIR "/src/Avocado.API"
-RUN dotnet build "Avocado.API.csproj" -c Release -o /app/build
+WORKDIR "/src/ParticipationPortal.API"
+RUN dotnet build "ParticipationPortal.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Avocado.API.csproj" -c Release -o /app/publish
+RUN dotnet publish "ParticipationPortal.API.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app

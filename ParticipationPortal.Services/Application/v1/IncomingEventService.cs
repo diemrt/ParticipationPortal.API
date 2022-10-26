@@ -113,7 +113,12 @@ namespace ParticipationPortal.Services.Application.v1
 
             foreach (var neededRole in incomingEvnt.WeeklyEvent.WeeklyEventRoles)
             {
-                addedNeededRole.Add(AddedNeededRole(incomingEvnt, neededRole));
+                addedNeededRole.Add(AddNeededRole(incomingEvnt, neededRole));
+            }
+
+            foreach (var involvedUser in incomingEvnt.IncomingEventUsers)
+            {
+                addedInvolvedUser.Add(AddInvolvedUser(involvedUser));
             }
 
             result.IsFull = !addedNeededRole.Any(x => x.IsCovered == false);
@@ -129,12 +134,25 @@ namespace ParticipationPortal.Services.Application.v1
         /// <param name="incomingEvnt">IncomingEvent entity</param>
         /// <param name="neededRole">WeeklyEventRole entity</param>
         /// <returns></returns>
-        private NeededRoleResponseModel AddedNeededRole(IncomingEvent incomingEvnt, WeeklyEventRole neededRole)
+        private NeededRoleResponseModel AddNeededRole(IncomingEvent incomingEvnt, WeeklyEventRole neededRole)
         {
             var result = new NeededRoleResponseModel();
             result = _mapper.Map<NeededRoleResponseModel>(neededRole);
 
-            result.IsCovered = incomingEvnt.IncomingEventUsers.Any(i => i.User.RoleId == neededRole.RoleId);
+            result.IsCovered = incomingEvnt.IncomingEventUsers.Where(x => x.User.RoleId == neededRole.RoleId).Any(i => i.IsParticipating);
+            return result;
+        }
+
+        /// <summary>
+        /// Add all involved user 
+        /// </summary>
+        /// <param name="involvedUser">IncomingEventUser entity</param>
+        /// <returns></returns>
+        private InvolvedUserResponseModel AddInvolvedUser(IncomingEventUser involvedUser)
+        {
+            var result = new InvolvedUserResponseModel();
+            result = _mapper.Map<InvolvedUserResponseModel>(involvedUser);
+
             return result;
         }
     }

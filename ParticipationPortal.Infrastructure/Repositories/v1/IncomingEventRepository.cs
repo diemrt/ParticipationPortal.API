@@ -21,7 +21,7 @@ namespace ParticipationPortal.Infrastructure.Repositories.v1
         public async Task<IEnumerable<IncomingEvent>> GetAllAsync(DateTime startingDate, DateTime endingDate)
         {
             var result = await context.IncomingEvents
-                .Include(x => x.IncomingEventUsers.OrderBy(x => x.UserId)).ThenInclude(x => x.User)
+                .Include(x => x.IncomingEventUsers.OrderBy(x => x.UserId)).ThenInclude(x => x.User).ThenInclude(x => x.Role)
                 .Include(x => x.WeeklyEvent).ThenInclude(x => x.WeeklyEventRoles.OrderBy(x => x.RoleId)).ThenInclude(x => x.Role)
                 .Where(x => x.ActualDate >= startingDate && x.ActualDate <= endingDate)
                 .OrderBy(x => x.ActualDate)

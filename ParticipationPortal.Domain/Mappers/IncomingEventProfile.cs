@@ -38,7 +38,18 @@ namespace ParticipationPortal.Domain.Mappers
                                 Value = src.RoleId,
                                 Label = src.Role.Name
                             }))
-                            ; 
+                            ;
+
+            CreateMap<IncomingEventUser, InvolvedUserResponseModel>()
+                            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+                            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.User.Name))
+                            .ForMember(dest => dest.IsParticipating, opt => opt.MapFrom(src => src.IsParticipating))
+                            .ForMember(dest => dest.Role, opt => opt.MapFrom(src => new GenericItem()
+                            {
+                                Value = src.User.RoleId,
+                                Label = src.User.Role.Name
+                            }))
+                            ;
             #endregion
         }
     }

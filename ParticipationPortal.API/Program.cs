@@ -12,7 +12,7 @@ builder.Configuration.AddUserSecrets<Program>();
 
 FirebaseAdmin.FirebaseApp.Create(new FirebaseAdmin.AppOptions()
 {
-    Credential = GoogleCredential.FromFile(builder.Configuration.GetSection("Firebase:SDK:Path").Value)
+    Credential = GoogleCredential.FromFile(Environment.GetEnvironmentVariable("ASPNETCORE_FIREBASE_SDK_PATH"))
 });
 
 builder.Services.AddControllers();
@@ -22,7 +22,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContextPool<ParticipationPortalContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ParticipationPortal"), serverOptions =>
+    options.UseSqlServer(Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTION_STRING"), serverOptions =>
     {
         serverOptions.MigrationsAssembly
         (typeof(Program).Assembly.FullName);
@@ -32,13 +32,13 @@ builder.Services.AddDbContextPool<ParticipationPortalContext>(options =>
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.Authority = $"https://securetoken.google.com/{builder.Configuration.GetSection("Firebase:AuthSeries").Value}";
+        options.Authority = $"https://securetoken.google.com/{Environment.GetEnvironmentVariable("ASPNETCORE_FIREBASE_AUTH_SERIES")}";
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
-            ValidIssuer = $"https://securetoken.google.com/{builder.Configuration.GetSection("Firebase:AuthSeries").Value}",
+            ValidIssuer = $"https://securetoken.google.com/{Environment.GetEnvironmentVariable("ASPNETCORE_FIREBASE_AUTH_SERIES")}",
             ValidateAudience = true,
-            ValidAudience = builder.Configuration.GetSection("Firebase:AuthSeries").Value,
+            ValidAudience = Environment.GetEnvironmentVariable("ASPNETCORE_FIREBASE_AUTH_SERIES"),
             ValidateLifetime = true
         };
     });

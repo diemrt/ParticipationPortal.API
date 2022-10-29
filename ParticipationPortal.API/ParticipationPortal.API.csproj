@@ -27,4 +27,9 @@
     <ProjectReference Include="..\ParticipationPortal.Services\ParticipationPortal.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="participation-portal-firebase-adminsdk-scv42-6eaf3c9e63.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

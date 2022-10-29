@@ -12,7 +12,7 @@ builder.Configuration.AddUserSecrets<Program>();
 
 FirebaseAdmin.FirebaseApp.Create(new FirebaseAdmin.AppOptions()
 {
-    Credential = GoogleCredential.FromFile(Environment.GetEnvironmentVariable("ASPNETCORE_FIREBASE_SDK_PATH"))
+    Credential = GoogleCredential.FromFile(Environment.GetEnvironmentVariable("Firebase:Sdk:Path"))
 });
 
 builder.Services.AddControllers();
@@ -22,7 +22,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContextPool<ParticipationPortalContext>(options =>
 {
-    options.UseSqlServer(Environment.GetEnvironmentVariable("ASPNETCORE_CONNECTION_STRING"), serverOptions =>
+    options.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionString"), serverOptions =>
     {
         serverOptions.MigrationsAssembly
         (typeof(Program).Assembly.FullName);
@@ -32,13 +32,13 @@ builder.Services.AddDbContextPool<ParticipationPortalContext>(options =>
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.Authority = $"https://securetoken.google.com/{Environment.GetEnvironmentVariable("ASPNETCORE_FIREBASE_AUTH_SERIES")}";
+        options.Authority = $"https://securetoken.google.com/{Environment.GetEnvironmentVariable("Firebase:AuthSeries")}";
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
-            ValidIssuer = $"https://securetoken.google.com/{Environment.GetEnvironmentVariable("ASPNETCORE_FIREBASE_AUTH_SERIES")}",
+            ValidIssuer = $"https://securetoken.google.com/{Environment.GetEnvironmentVariable("AFirebase:AuthSeries")}",
             ValidateAudience = true,
-            ValidAudience = Environment.GetEnvironmentVariable("ASPNETCORE_FIREBASE_AUTH_SERIES"),
+            ValidAudience = Environment.GetEnvironmentVariable("AFirebase:AuthSeries"),
             ValidateLifetime = true
         };
     });
@@ -60,12 +60,9 @@ builder.Services
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.ConfigureExceptionHandler();
 

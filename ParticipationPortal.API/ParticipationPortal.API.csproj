@@ -28,6 +28,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="participation-portal-firebase-adminsdk-scv42-69b47216e3.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="participation-portal-firebase-adminsdk-scv42-6eaf3c9e63.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

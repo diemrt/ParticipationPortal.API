@@ -12,7 +12,7 @@ builder.Configuration.AddUserSecrets<Program>();
 
 FirebaseAdmin.FirebaseApp.Create(new FirebaseAdmin.AppOptions()
 {
-    Credential = GoogleCredential.FromFile(Environment.GetEnvironmentVariable("Firebase:Sdk:Path"))
+    Credential = GoogleCredential.FromFile(Environment.GetEnvironmentVariable("FIREBASE_SDK_PATH"))
 });
 
 builder.Services.AddControllers();
@@ -22,7 +22,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContextPool<ParticipationPortalContext>(options =>
 {
-    options.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionString"), serverOptions =>
+    options.UseSqlServer(Environment.GetEnvironmentVariable("CONNECTIONSTRINGS_PARTICIPATIONPORTAL"), serverOptions =>
     {
         serverOptions.MigrationsAssembly
         (typeof(Program).Assembly.FullName);
@@ -32,13 +32,13 @@ builder.Services.AddDbContextPool<ParticipationPortalContext>(options =>
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.Authority = $"https://securetoken.google.com/{Environment.GetEnvironmentVariable("Firebase:AuthSeries")}";
+        options.Authority = $"https://securetoken.google.com/{Environment.GetEnvironmentVariable("FIREBASE_AUTHSERIES")}";
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
-            ValidIssuer = $"https://securetoken.google.com/{Environment.GetEnvironmentVariable("AFirebase:AuthSeries")}",
+            ValidIssuer = $"https://securetoken.google.com/{Environment.GetEnvironmentVariable("FIREBASE_AUTHSERIES")}",
             ValidateAudience = true,
-            ValidAudience = Environment.GetEnvironmentVariable("AFirebase:AuthSeries"),
+            ValidAudience = Environment.GetEnvironmentVariable("FIREBASE_AUTHSERIES"),
             ValidateLifetime = true
         };
     });
